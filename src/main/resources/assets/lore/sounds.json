@@ -1,0 +1,44 @@
+{
+  "opening_line": {
+    "subtitle": "lore.opening_line",
+    "sounds": [
+      "lore:opening_line"
+    ]
+  },
+  "creeper": {
+    "subtitle": "lore.creeper",
+    "sounds": [
+      "lore:creeper"
+    ]
+  },
+  "darkness": {
+    "subtitle": "lore.darkness",
+    "sounds": [
+      "lore:darkness"
+    ]
+  },
+  "fireballs": {
+    "subtitle": "lore.fireballs",
+    "sounds": [
+      "lore:fireballs"
+    ]
+  },
+  "lava_drop": {
+    "subtitle": "lore.lava_drop",
+    "sounds": [
+      "lore:lava_drop"
+    ]
+  },
+  "lightning_swing": {
+    "subtitle": "lore.lightning_swing",
+    "sounds": [
+      "lore:lightning_swing"
+    ]
+  },
+  "outro": {
+    "subtitle": "lore.outro",
+    "sounds": [
+      "lore:outro"
+    ]
+  }
+}

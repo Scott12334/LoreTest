@@ -1,6 +1,7 @@
 package net.newlife.lore.event;
 
 import net.minecraft.world.damagesource.DamageSource;
+import net.minecraftforge.client.event.sound.PlaySoundEvent;
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
@@ -14,6 +15,11 @@ import net.newlife.lore.entity.custom.Keeper;
 
 @Mod.EventBusSubscriber(modid = Main.MOD_ID, bus= Mod.EventBusSubscriber.Bus.MOD)
 public class ModEventBusEvents {
+    /*@SubscribeEvent
+    public static void onSounds(PlaySoundEvent event)
+    {
+        System.out.println("works here");
+    }*/
     @SubscribeEvent
     public static void entityAttributeEvent(EntityAttributeCreationEvent event){
         event.put(ModEntityTypes.KEEPER.get(), Keeper.setAttributes());
@@ -28,10 +34,6 @@ public class ModEventBusEvents {
                 event.setCanceled(true);
             }
         }
-    }
-    @SubscribeEvent
-    public void keeperHit(AttackEntityEvent event){
-        System.out.println("hitt");
     }
 
 }

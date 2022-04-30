@@ -11,6 +11,7 @@ import net.minecraft.world.level.ExplosionDamageCalculator;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
+import net.minecraftforge.event.entity.living.LivingDamageEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.player.AttackEntityEvent;
 import net.minecraftforge.event.world.BlockEvent;
@@ -35,6 +36,18 @@ public class ServerEvents {
             event.getEntity().level.setBlock(pos, ModBlocks.TOMBSTONE.get().defaultBlockState(), 1);
             event.setCanceled(true);
         }
+        if(event.getEntity() instanceof Keeper){
+            Keeper dyingBoss= (Keeper) event.getEntity();
+            dyingBoss.playDeath();
+            if(dyingBoss.isReadyToDie()==true){
+                event.setCanceled(true);
+            }
+            else{
+                System.out.println("test");
+                dyingBoss.setHealth(5);
+                event.setCanceled(false);
+            }
+        }
     }
     @SubscribeEvent
     public void blockBreak(BlockEvent.BreakEvent event){
@@ -43,6 +56,18 @@ public class ServerEvents {
         if(blockIn instanceof TombStone){
 
         }
+    }
 
+    @SubscribeEvent
+    public void keeperHit(LivingDamageEvent event){
+        if(event.getEntity() instanceof Keeper){
+            if(event.getSource().getEntity() instanceof Player){
+                Player attacker= (Player) event.getSource().getEntity();
+                Keeper victim= (Keeper) event.getEntity();
+                PlayerDamageStore newStore= new PlayerDamageStore(attacker);
+                newStore.damageCaused(event.getAmount());
+                victim.newAttacker(newStore);
+            }
+        }
     }
 }

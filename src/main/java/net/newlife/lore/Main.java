@@ -26,6 +26,7 @@ import net.newlife.lore.entity.custom.ObsidianCreeper;
 import net.newlife.lore.event.ServerEvents;
 import net.newlife.lore.items.ModItems;
 import net.newlife.lore.network.Network;
+import net.newlife.lore.sound.ModSounds;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.spongepowered.asm.mixin.Final;
@@ -41,6 +42,7 @@ public class Main
     public static final String MOD_ID = "lore";
 
     public Main() {
+
         IEventBus eventBus= FMLJavaModLoadingContext.get().getModEventBus();
         // Register the setup method for modloading
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
@@ -57,6 +59,7 @@ public class Main
         ModEntityTypes.register(eventBus);
         ModItems.register(eventBus);
         ModBlocks.register(eventBus);
+        ModSounds.register(eventBus);
 
     }
     public void commonSetup(final FMLCommonSetupEvent event){

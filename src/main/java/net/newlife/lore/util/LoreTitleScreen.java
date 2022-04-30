@@ -27,7 +27,7 @@ public class LoreTitleScreen extends TitleScreen {
         this.fading = false;
     }
     private static final ResourceLocation SPLASH =
-            new ResourceLocation(Main.MOD_ID, "textures/gui/background/kaupenmenu.jpg");
+            new ResourceLocation(Main.MOD_ID, "textures/gui/background/background.png");
 
     private static final ResourceLocation MINECRAFT_LOGO =
             new ResourceLocation("textures/gui/title/minecraft.png");
@@ -52,20 +52,6 @@ public class LoreTitleScreen extends TitleScreen {
         for (Widget widget : this.renderables) {
             widget.render(poseStack, mouseX, mouseY, partialTicks);
         }
-        float f = this.fading ? (float)(Util.getMillis() - this.fadeInStart) / 1000.0F : 1.0F;
-        float f1 = this.fading ? Mth.clamp(f - 1.0F, 0.0F, 1.0F) : 1.0F;
-        int l = Mth.ceil(f1 * 255.0F) << 24;
-        if (this.splash != null) {
-            poseStack.pushPose();
-            poseStack.translate((double)(this.width / 2 + 90), 70.0D, 0.0D);
-            poseStack.mulPose(Vector3f.ZP.rotationDegrees(-20.0F));
-            float f2 = 1.8F - Mth.abs(Mth.sin((float)(Util.getMillis() % 1000L) / 1000.0F * ((float)Math.PI * 2F)) * 0.1F);
-            f2 = f2 * 100.0F / (float)(this.font.width(this.splash) + 32);
-            poseStack.scale(f2, f2, f2);
-            drawCenteredString(poseStack, this.font, this.splash, 0, -8, 16776960 | l);
-            poseStack.popPose();
-        }
-
     }
 
     private void drawMinecraftLogo(@NotNull PoseStack poseStack) {
